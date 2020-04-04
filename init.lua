@@ -30,8 +30,13 @@ obj.mapping = {
   center = { obj.mash, 'c' },
   nextScreen = { obj.mash, 'n' },
   previousScreen = { obj.mash, 'p' },
-  resizeOut = { obj.mash, '=' },
-  resizeIn = { obj.mash, '-' }
+  resizeOut = { obj.mash, '+' },
+  resizeIn = { obj.mash, '-' },
+  section00 = { obj.mash, 'g' },
+  section20 = { obj.mash, 'h' },
+  section40 = { obj.mash, 'j' },
+  section60 = { obj.mash, 'k' },
+  section80 = { obj.mash, 'l' },
 }
 
 local units = {
@@ -46,6 +51,12 @@ local units = {
   botright50    = { x = 0.50, y = 0.50, w = 0.50, h = 0.50 },
   
   maximum       = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
+
+  section00 = { x = 0.00, y = 0.00, w = 0.20, h = 1.00 },
+  section20 = { x = 0.20, y = 0.00, w = 0.20, h = 1.00 },
+  section40 = { x = 0.40, y = 0.00, w = 0.20, h = 1.00 },
+  section60 = { x = 0.60, y = 0.00, w = 0.20, h = 1.00 },
+  section80 = { x = 0.80, y = 0.00, w = 0.20, h = 1.00 },
 }
 
 function move(unit) hs.window.focusedWindow():move(unit, nil, true, 0) end
@@ -130,6 +141,12 @@ function obj:previousScreen() hs.window.focusedWindow():moveToScreen(hs.window.f
 function obj:resizeOut() resizeWindowInSteps(true) end
 function obj:resizeIn() resizeWindowInSteps(false) end
 
+function obj:section00() move(units.section00, nil, true, 0) end
+function obj:section20() move(units.section20, nil, true, 0) end
+function obj:section40() move(units.section40, nil, true, 0) end
+function obj:section60() move(units.section60, nil, true, 0) end
+function obj:section80() move(units.section80, nil, true, 0) end
+
 --- HammerspoonShiftIt:bindHotkeys(mapping)
 --- Method
 --- Binds hotkeys for HammerspoonShiftIt
@@ -152,6 +169,11 @@ function obj:resizeIn() resizeWindowInSteps(false) end
 ---   * previousScreen
 ---   * resizeOut
 ---   * resizeIn
+---   * section00
+---   * section20
+---   * section40
+---   * section60
+---   * section80
 function obj:bindHotkeys(mapping)
 
   if (mapping) then
@@ -174,6 +196,12 @@ function obj:bindHotkeys(mapping)
   hs.hotkey.bind(self.mapping.previousScreen[1], self.mapping.previousScreen[2], function() self:previousScreen() end)
   hs.hotkey.bind(self.mapping.resizeOut[1], self.mapping.resizeOut[2], function() self:resizeOut() end)
   hs.hotkey.bind(self.mapping.resizeIn[1], self.mapping.resizeIn[2], function() self:resizeIn() end)
+  hs.hotkey.bind(self.mapping.resizeIn[1], self.mapping.resizeIn[2], function() self:resizeIn() end)
+  hs.hotkey.bind(self.mapping.section00[1], self.mapping.section00[2], function() self:section00() end)
+  hs.hotkey.bind(self.mapping.section20[1], self.mapping.section20[2], function() self:section20() end)
+  hs.hotkey.bind(self.mapping.section40[1], self.mapping.section40[2], function() self:section40() end)
+  hs.hotkey.bind(self.mapping.section60[1], self.mapping.section60[2], function() self:section60() end)
+  hs.hotkey.bind(self.mapping.section80[1], self.mapping.section80[2], function() self:section80() end)
 
   return self
 end
